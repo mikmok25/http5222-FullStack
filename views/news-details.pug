@@ -18,7 +18,6 @@ block layout-content
         document.addEventListener('DOMContentLoaded', function() {
             var contentElement = document.getElementById('content');
             if (contentElement) {
-                // Replace [<number> chars] with a "See more" link
                 var articleUrl = "#{article.url}";
                 contentElement.innerHTML = contentElement.innerHTML.replace(/\[\+\d+ chars\]/g, '<a href="' + articleUrl + '" target="_blank">See more</a>');
             }

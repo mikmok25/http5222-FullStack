@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const path = require("path");
+require('dotenv').config()
 const { formatDate } = require("./modules");
 
 const app = express();
@@ -23,14 +24,14 @@ app.get("/", async (req, res) => {
 
     // Fetch weather data
     const weatherResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8decc220213c0ce86a92b34ac15ea5bf&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.APP_ID}&units=metric`
     );
 
     const weatherData = weatherResponse.data;
 
     // Fetch 5-day forecast data
     const forecastResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=8decc220213c0ce86a92b34ac15ea5bf&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.APP_ID}&units=metric`
     );
     const forecastData = forecastResponse.data;
 
@@ -47,7 +48,7 @@ app.get("/", async (req, res) => {
 
     // Fetch news data related to weather in the city
     const newsResponse = await axios.get(
-      `https://newsapi.org/v2/everything?q=weather in ${city}&apiKey=9de95338ef0a4a4286aa41c26539266c`
+      `https://newsapi.org/v2/everything?q=${city} Weather&apiKey=${process.env.NEWS_API}`
     );
 
     const newsData = newsResponse.data.articles || [];
@@ -93,14 +94,14 @@ app.get("/fetch-data", async (req, res) => {
 
     // Fetch weather data
     const weatherResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8decc220213c0ce86a92b34ac15ea5bf&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APP_ID}&units=metric`
     );
 
     const weatherData = weatherResponse.data;
 
     // Fetch 5-day forecast data
     const forecastResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=8decc220213c0ce86a92b34ac15ea5bf&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APP_ID}&units=metric`
     );
     const forecastData = forecastResponse.data;
 
@@ -117,7 +118,7 @@ app.get("/fetch-data", async (req, res) => {
 
     // Fetch news data related to weather in the city
     const newsResponse = await axios.get(
-      `https://newsapi.org/v2/everything?q=weather ${city}&apiKey=9de95338ef0a4a4286aa41c26539266c`
+      `https://newsapi.org/v2/everything?q=weather ${city}&apiKey=${NEWS_API}`
     );
 
     const newsData = newsResponse.data.articles || [];
@@ -167,14 +168,14 @@ app.get("/news/:id", async (req, res) => {
 
     // Fetch weather data
     const weatherResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8decc220213c0ce86a92b34ac15ea5bf&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APP_ID}&units=metric`
     );
 
     const weatherData = weatherResponse.data;
 
     // Fetch 5-day forecast data
     const forecastResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=8decc220213c0ce86a92b34ac15ea5bf&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APP_ID}&units=metric`
     );
     const forecastData = forecastResponse.data;
 
@@ -190,7 +191,7 @@ app.get("/news/:id", async (req, res) => {
     }
 
     const newsResponse = await axios.get(
-      `https://newsapi.org/v2/everything?q=weather ${city}&apiKey=9de95338ef0a4a4286aa41c26539266c`
+      `https://newsapi.org/v2/everything?q=weather ${city}&apiKey=${NEWS_API}`
     );
     const newsData = newsResponse.data.articles;
 
